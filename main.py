@@ -1,32 +1,17 @@
-from src import TimeCalculator
-from src.TextColor import TextColor
+from executables.TimeCalculator import CalculateDifferenceTime, CalculateTotalTime
+from lib.Option import Option
 
-_list = [
-    TimeCalculator.CalculateDifferenceTime(),
-    TimeCalculator.CalculateTotalTime()
+executables_list = [
+    ["CalculateDifferenceTime", CalculateDifferenceTime()],
+    ["CalculateTotalTime", CalculateTotalTime()]
 ]
 
 def main():
-    
-    index = 0
-    print_option()
-    
-    while True:
-        index = input("Please enter the event: ")
-        if index == 'q' :
-            print("quit.")
-            return
-        
-        try:
-            _list[int(index)-1].execute()
-            print()
-        except:
-            print(TextColor().red("Invalid input."))
-
-def print_option():
-    for i in range(0, len(_list)):
-        print(f"{i+1}: {_list[i].__class__.__name__}")
-    print("q: quit\n")
+    main_option = Option(executables_list)
+    main_option.print()
+    b = True
+    while b:
+        b = main_option.execute()
 
 if __name__ == "__main__":
     main()
