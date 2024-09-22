@@ -1,4 +1,5 @@
 from src import TimeCalculator
+from src.TextColor import TextColor
 
 _list = [
     TimeCalculator.CalculateDifferenceTime(),
@@ -6,6 +7,7 @@ _list = [
 ]
 
 def main():
+    
     index = 0
     print_option()
     
@@ -19,7 +21,7 @@ def main():
             _list[int(index)-1].execute()
             print()
         except:
-            print("Invalid input.")
+            print(TextColor().red("Invalid input."))
 
 def print_option():
     for i in range(0, len(_list)):
