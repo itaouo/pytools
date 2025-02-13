@@ -1,12 +1,13 @@
 from executables.TimeCalculator import CalculateDifferenceTime, CalculateTotalTime
-from executables.JsonAnalyzer import IsJsonValid
+from executables.JsonAnalyzer import IsJsonValid, CompareJsons
 
 from lib.Option import Option
 
 executables_list = [
     ["CalculateDifferenceTime", CalculateDifferenceTime()],
     ["CalculateTotalTime", CalculateTotalTime()],
-    ["IsJsonValid", IsJsonValid()]
+    ["IsJsonValid", IsJsonValid()],
+    ["CompareJsons", CompareJsons()]
 ]
 
 def main():
