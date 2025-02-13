@@ -16,9 +16,10 @@ class Option:
             return False
         try:
             index = int(index)
-            self._list[index][1].execute()
-        except:
+            self._list[index - 1][1].execute()
+        except Exception as e:
             print(TextColor().red("Invalid input."))
+            print("error: " + str(e))
             return True
         return True
         
