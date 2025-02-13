@@ -1,3 +1,4 @@
+from lib.CustomException import Fail, Success
 from lib.TextColor import TextColor
 
 class Option:
@@ -11,15 +12,25 @@ class Option:
 
     def execute(self):
         index = input("Please enter the event: ")
+        
         if index == 'q' :
             print("quit.")
             return False
         try:
-            index = int(index)
-            self._list[index - 1][1].execute()
-        except Exception as e:
-            print(TextColor().red("Invalid input."))
-            print("error: " + str(e))
+            index = int(index) - 1
+            if index < 0 and index > len(self._list): raise Exception
+        except:
+            print(TextColor().red("Invalid event.\n"))
             return True
+
+        try:
+            self._list[index][1].execute()
+        except Fail as e:
+            print(e)
+        except Success as e:
+            print(e)
+        except Exception as e:
+            print(TextColor().red(f"[Exception]: {str(e)}"))
+        print()
         return True
         

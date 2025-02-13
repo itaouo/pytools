@@ -1,5 +1,5 @@
 import json
-from lib.TextColor import TextColor
+from lib.CustomException import Fail, Success
 
 def format_json_string(content, indentation = '  '):
     indent = ''
@@ -39,14 +39,13 @@ def invalid_json(json_str):
     try:
         json.loads(json_str)
     except json.JSONDecodeError as e:
-        print(TextColor().red("json is invaild: " + str(e)))
+        return str(e)
 
 class IsJsonValid:
     def execute(self):
         json_str = input("Enter the Json: ")
         if is_valid_json(json_str):
-            print(TextColor().green("json is vaild!"))
+            raise Success("Json is valid.")
         else:
-            invalid_json(format_json_string(json_str))
-            print(format_json_string(json_str))
-    
+            raise Fail("Invalid Json", 
+                f"{invalid_json(format_json_string(json_str))}\n{format_json_string(json_str)}")
